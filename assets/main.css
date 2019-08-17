@@ -1,0 +1,11 @@
+@import "https://fonts.googleapis.com/icon?family=Material+Icons";
+@import "https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+
+li a,
+a {
+  text-decoration: none;
+  color: inherit;
+}
+.v-application a {
+  color: inherit;
+}
