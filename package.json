@@ -8,21 +8,20 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "heroku-postbuild": "npm run build"
   },
   "dependencies": {
     "@nuxtjs/toast": "^3.2.1",
-    "child_process": "^1.0.2",
+    "express": "^4.17.1",
     "firebase": "^6.4.0",
-    "firebase-admin": "^8.3.0",
-    "firebase-functions": "^3.2.0",
-    "http2": "^3.3.7",
-    "net": "^1.0.2",
+    "firebase-admin": "^8.4.0",
     "nuxt": "^2.0.0",
-    "tls": "0.0.1",
+    "request": "^2.88.0",
+    "short-uuid": "^3.1.1",
     "uuid": "^3.3.2",
-    "vue-qr": "^2.1.0",
-    "vue-toasted": "^1.1.27"
+    "vue-toasted": "^1.1.27",
+    "vuetify": "^2.0.9"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0"

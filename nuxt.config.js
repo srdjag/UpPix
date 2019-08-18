@@ -7,7 +7,7 @@ export default {
    */
   head: {
     titleTemplate: "",
-    title: "Image Hosting APP",
+    title: "UpPix",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -17,7 +17,14 @@ export default {
         content: process.env.npm_package_description || ""
       }
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    link: [
+      { rel: "icon", type: "image/x-icon", href: "/favicon.ico" },
+      {
+        rel: "stylesheet",
+        href:
+          "https://fonts.googleapis.com/css?family=Indie+Flower&display=swap"
+      }
+    ]
   },
   /*
    ** Customize the progress-bar color
@@ -26,6 +33,7 @@ export default {
   router: {
     middleware: "router-auth"
   },
+
   /*
    ** Global CSS
    */
@@ -42,6 +50,8 @@ export default {
    ** Nuxt.js modules
    */
   modules: ["@nuxtjs/toast"],
+
+  serverMiddleware: ["~/api/servermid"],
 
   toast: {
     position: "top-center",
@@ -81,9 +91,12 @@ export default {
    ** Build configuration
    */
   build: {
-    /*
-     ** You can extend webpack config here
-     */
-    extend(config, ctx) {}
+    extend(config, { isDev, isClient }) {
+      config.node = {
+        fs: "empty"
+      };
+
+      // ....
+    }
   }
 };

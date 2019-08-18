@@ -30,6 +30,7 @@
 
 <script>
 import firebase from "../../plugins/firebase.js";
+import userController from "../../plugins/userController.js";
 import { mapMutations, mapGetters } from "vuex";
 
 export default {
@@ -42,46 +43,30 @@ export default {
   },
   methods: {
     signInWithGoogle() {
-      var _this = this;
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(function(result) {
-          var token = result.credential.accessToken;
-          var user = result.user;
-        })
-        .catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          var email = error.email;
-          var credential = error.credential;
-        });
+      userController.signInWithGoogle();
     },
     signInWithEmail() {
       var _this = this;
       if (this.password === this.passwordRep) {
-        firebase
-          .auth()
-          .createUserWithEmailAndPassword(this.email, this.password)
-          .then(user => {
-            document.location.href = "/";
-          })
-          .catch(function(error) {
-            _this.$toast.show(error.message, {
-              duration: 3000,
-              singleton: true,
-              position: "top-center"
-            });
-          });
+        userController.signInWithEmail(_this.email, _this.password, this);
       } else {
-        this.$toast.show("Password do not match", {
+        this.$toast.show("Passwords do not match", {
           duration: 3000,
           singleton: true,
           position: "top-center"
         });
       }
     }
+  },
+  beforeCreate() {
+    var _this = this;
+
+    firebase.auth().onAuthStateChanged(async function(user) {
+      if (user) {
+        document.location.href = "/";
+      } else {
+      }
+    });
   }
 };
 </script>

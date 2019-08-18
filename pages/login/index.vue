@@ -29,6 +29,7 @@
 
 <script>
 import firebase from "../../plugins/firebase";
+import userController from "../../plugins/userController.js";
 
 export default {
   data() {
@@ -39,39 +40,19 @@ export default {
   },
   methods: {
     loginWithGoogle() {
-      var _this = this;
-      var provider = new firebase.auth.GoogleAuthProvider();
-      firebase
-        .auth()
-        .signInWithPopup(provider)
-        .then(function(result) {
-          var token = result.credential.accessToken;
-          var user = result.user;
-          document.location.href = "/";
-        })
-        .catch(function(error) {
-          var errorCode = error.code;
-          var errorMessage = error.message;
-          var email = error.email;
-          var credential = error.credential;
-        });
+      userController.loginWithGoogle();
     },
     loginWithEmail() {
-      var _this = this;
-      firebase
-        .auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        .then(() => {
-          document.location.href = "/";
-        })
-        .catch(function(error) {
-          _this.$toast.show(error.message, {
-            duration: 3000,
-            singleton: true,
-            position: "top-center"
-          });
-        });
+      userController.loginWithEmail(this.email, this.password, this);
     }
+  },
+  beforeCreate() {
+    firebase.auth().onAuthStateChanged(async function(user) {
+      if (user) {
+        document.location.href = "/";
+      } else {
+      }
+    });
   }
 };
 </script>
