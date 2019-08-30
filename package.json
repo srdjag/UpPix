@@ -14,16 +14,19 @@
   "dependencies": {
     "@nuxtjs/toast": "^3.2.1",
     "express": "^4.17.1",
-    "firebase": "^6.4.0",
+    "firebase": "^6.5.0",
     "firebase-admin": "^8.4.0",
-    "nuxt": "^2.0.0",
+    "nuxt": "^2.9.2",
     "request": "^2.88.0",
+    "sass-loader": "^8.0.0",
     "short-uuid": "^3.1.1",
-    "uuid": "^3.3.2",
+    "uuid": "^3.3.3",
     "vue-toasted": "^1.1.27",
-    "vuetify": "^2.0.9"
+    "vuetify": "^2.0.11",
+    "@nuxtjs/vuetify": "^1.6.1"
   },
   "devDependencies": {
-    "@nuxtjs/vuetify": "^1.0.0"
+    "@babel/runtime-corejs2": "^7.5.5",
+    "core-js": "^2.6.9"
   }
 }

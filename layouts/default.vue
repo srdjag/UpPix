@@ -87,4 +87,9 @@ export default {
 </script>
 
 <style>
+html {
+  font-size: 16px;
+  padding: 0;
+  margin: 0;
+}
 </style>

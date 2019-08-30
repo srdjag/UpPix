@@ -3,7 +3,7 @@
     <v-layout row wrap align-center>
       <v-flex>
         <v-card color="white" width="500px" class="mx-auto">
-          <v-list-item style="background-color: #512DA8" color="white">
+          <v-list-item style="background-color: #3642b4" color="white">
             <i class="material-icons white--text">person</i>
             <v-list-item-content>
               <v-list-item-title class="headline white--text pl-2">Login</v-list-item-title>

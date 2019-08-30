@@ -66,6 +66,7 @@
                   @click.prevent="unsuspend(user.id, i)"
                   small
                 >unsuspend</v-btn>
+                <v-btn color="error" @click.prevent="deleteAcc(user.id, i)" small>delete account</v-btn>
               </div>
             </v-card-text>
           </v-expansion-panel-content>
@@ -139,6 +140,41 @@ export default {
         .then(e => {
           _this.users[i].suspended = false;
         });
+    },
+    deleteAcc(id, i) {
+      var prompt = confirm("Delete this user?");
+      if (prompt == true) {
+      } else {
+        return;
+      }
+      firebase
+        .database()
+        .ref("/images/")
+        .orderByChild("ownerID")
+        .equalTo(id)
+        .on("value", function(snapshot) {
+          snapshot.forEach(function(childSnapshot) {
+            // Iterating through images owned by user (ID)
+            var key = childSnapshot.key;
+            var childData = childSnapshot.val();
+            var delURL = firebase.storage().refFromURL(childData.URL);
+            delURL
+              .delete()
+              .then(function() {
+                firebase
+                  .database()
+                  .ref("/images/")
+                  .child(key)
+                  .remove();
+              })
+              .catch(function(error) {});
+          });
+        });
+      firebase
+        .database()
+        .ref("/users/")
+        .child(id)
+        .remove();
     }
   }
 };
